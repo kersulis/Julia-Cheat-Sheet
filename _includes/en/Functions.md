@@ -70,7 +70,7 @@ Functions can be
 [vectorized](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized-1)
 by using the Dot Syntax
 
-```
+```julia
 # here we broadcast the subtraction of each mean value
 # by using the dot operator
 julia> using Statistics
@@ -94,13 +94,3 @@ provide custom function overloadings with type annotations. </span></a>
 of functions based on data types. When a function is called with the
 same argument types again, Julia can look up the native machine code and
 skip the compilation process.
-
-Since **Julia 0.5** the existence of potential
-ambiguities is still acceptable, but actually calling an ambiguous
-method is an **immediate error**.
-
-Stack overflow is possible when recursive functions nest many levels
-deep. [Trampolining](https://web.archive.org/web/20140420011956/http://blog.zachallaun.com/post/jumping-julia) can
-be used to do tail-call optimization, as Julia does not do that
-automatically [yet](https://github.com/JuliaLang/julia/issues/4964).
-Alternatively, you can rewrite the tail recursion as an iteration.

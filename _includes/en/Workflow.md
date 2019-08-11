@@ -1,0 +1,2 @@
+There are a few ways to interact with Julia; most of the time we will be using a Julia kernel paired with an interactive textbook interface. Julia also comes with a <a class="tooltip" href="#">REPL<span> Read-Evaluate-Print Loop
+</span></a> for working at the command line. We recommend following [these instructions](http://docs.junolab.org/latest/man/installation/) to install the [Atom text editor](https://atom.io/) and Juno package, which provides a rich interface with panes for the REPL, workspace, documentation, plots, and debug information.

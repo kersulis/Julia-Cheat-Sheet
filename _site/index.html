@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+   <title>Julia for Data Science</title>
+   <link href="/cheatsheet.css" rel="stylesheet" type="text/css">
+ </head>
+
+ <body>
+
+   <div id="top">
+  <div id="title">
+    <h1>Data science with</h1>
+    <h2>Based on <a href=https://juliadocs.github.io/Julia-Cheat-Sheet/>this intro to Julia</a></h2>
+  </div>
+  <img src="/julia.png" alt="Julia" height="100">
+  <div id="version">
+    <h1>1.0</h1>
+  </div>
+</div>
+
+
+   <div id="contents">
+  <ul>
+    <li>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Workflow</h1>
+        </div>
+        
+        <p>There are a few ways to interact with Julia; most of the time we will be using a Julia kernel paired with an interactive textbook interface. Julia also comes with a <a class="tooltip" href="#">REPL<span> Read-Evaluate-Print Loop
+</span></a> for working at the command line. We recommend following <a href="http://docs.junolab.org/latest/man/installation/">these instructions</a> to install the <a href="https://atom.io/">Atom text editor</a> and Juno package, which provides a rich interface with panes for the REPL, workspace, documentation, plots, and debug information.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Basics</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Assignment</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">answer</span> <span class="o">=</span> <span class="mi">42</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="x">,</span> <span class="x">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="x">;</span> <span class="x">],</span> <span class="s">"A string"</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">x</span><span class="x">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="x">,</span> <span class="n">x</span> <span class="c"># swap x and y</span></code></td>
+    </tr>
+    <tr>
+      <td>Constant declaration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kd">const</span> <span class="n">DATE_OF_BIRTH</span> <span class="o">=</span> <span class="mi">2012</span></code></td>
+    </tr>
+    <tr>
+      <td>End-of-line comment</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="c"># This is a comment</span></code></td>
+    </tr>
+    <tr>
+      <td>Delimited comment</td>
+      <td><code class="language-julia highlighter-rouge"><span class="cm">#= This is another comment =#</span></code></td>
+    </tr>
+    <tr>
+      <td>Chaining</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c"># right-to-left</span></code><br /><code class="language-julia highlighter-rouge"><span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">3</span>      <span class="c"># true</span></code><br /><code class="language-julia highlighter-rouge"><span class="mi">5</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="mi">5</span> <span class="c"># false</span></code></td>
+    </tr>
+    <tr>
+      <td>Function definition</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">function</span><span class="nf"> add_one</span><span class="x">(</span><span class="n">i</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">return</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Insert LaTeX symbols</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">\</span><span class="n">delta</span></code> + [Tab]</td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Operators</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Basic arithmetic</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">+</span></code>, <code class="language-julia highlighter-rouge"><span class="o">-</span></code>,<code class="language-julia highlighter-rouge"><span class="o">*</span></code>,<code class="language-julia highlighter-rouge"><span class="o">/</span></code></td>
+    </tr>
+    <tr>
+      <td>Exponentiation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="mi">2</span><span class="o">^</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">8</span></code></td>
+    </tr>
+    <tr>
+      <td>Division</td>
+      <td><code class="language-julia highlighter-rouge"><span class="mi">3</span> <span class="o">/</span> <span class="mi">12</span> <span class="o">==</span> <span class="mf">0.25</span></code></td>
+    </tr>
+    <tr>
+      <td>Inverse division</td>
+      <td><code class="language-julia highlighter-rouge"><span class="mi">7</span> <span class="o">\</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">/</span> <span class="mi">7</span></code></td>
+    </tr>
+    <tr>
+      <td>Remainder</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">x</span> <span class="o">%</span> <span class="n">y</span></code> or <code class="language-julia highlighter-rouge"><span class="n">rem</span><span class="x">(</span><span class="n">x</span><span class="x">,</span> <span class="n">y</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Negation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">!</span><span class="nb">true</span> <span class="o">==</span> <span class="nb">false</span></code></td>
+    </tr>
+    <tr>
+      <td>Equality</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">==</span> <span class="n">b</span></code></td>
+    </tr>
+    <tr>
+      <td>Inequality</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">!=</span> <span class="n">b</span></code> or <code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">≠</span> <span class="n">b</span></code></td>
+    </tr>
+    <tr>
+      <td>Less and larger than</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">&lt;</span></code> and <code class="language-julia highlighter-rouge"><span class="o">&gt;</span></code></td>
+    </tr>
+    <tr>
+      <td>Less than or equal to</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">&lt;=</span></code> or <code class="language-julia highlighter-rouge"><span class="o">≤</span></code></td>
+    </tr>
+    <tr>
+      <td>Greater than or equal to</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">&gt;=</span></code> or <code class="language-julia highlighter-rouge"><span class="o">≥</span></code></td>
+    </tr>
+    <tr>
+      <td>Element-wise operation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">]</span> <span class="o">.+</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">]</span> <span class="o">==</span> <span class="x">[</span><span class="mi">2</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">6</span><span class="x">]</span></code><br /><code class="language-julia highlighter-rouge"><span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">]</span> <span class="o">.*</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">]</span> <span class="o">==</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">4</span><span class="x">,</span> <span class="mi">9</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Not a number</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">isnan</span><span class="x">(</span><span class="nb">NaN</span><span class="x">)</span></code> not(!) <code class="language-julia highlighter-rouge"><span class="nb">NaN</span> <span class="o">==</span> <span class="nb">NaN</span></code></td>
+    </tr>
+    <tr>
+      <td>Ternary operator</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">==</span> <span class="n">b</span> <span class="o">?</span> <span class="s">"Equal"</span> <span class="o">:</span> <span class="s">"Not equal"</span></code></td>
+    </tr>
+    <tr>
+      <td>Short-circuited AND and OR</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">&amp;&amp;</span> <span class="n">b</span></code> and <code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">||</span> <span class="n">b</span></code></td>
+    </tr>
+    <tr>
+      <td>Object equivalence</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">===</span> <span class="n">b</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>The shell a.k.a. REPL</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Recall last result</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">ans</span></code></td>
+    </tr>
+    <tr>
+      <td>Interrupt execution</td>
+      <td>[Ctrl] + [C]</td>
+    </tr>
+    <tr>
+      <td>Clear screen</td>
+      <td>[Ctrl] + [L]</td>
+    </tr>
+    <tr>
+      <td>Run program</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">include</span><span class="x">(</span><span class="s">"filename.jl"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Get help for <code class="language-julia highlighter-rouge"><span class="n">func</span></code> is defined</td>
+      <td><code class="language-julia highlighter-rouge"><span class="o">?</span><span class="n">func</span></code></td>
+    </tr>
+    <tr>
+      <td>See all places where <code class="language-julia highlighter-rouge"><span class="n">func</span></code> is defined</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">apropos</span><span class="x">(</span><span class="s">"func"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Command line mode</td>
+      <td><code class="language-julia highlighter-rouge"><span class="x">;</span></code></td>
+    </tr>
+    <tr>
+      <td>Package Manager mode</td>
+      <td>]</td>
+    </tr>
+    <tr>
+      <td>Help mode</td>
+      <td>?</td>
+    </tr>
+    <tr>
+      <td>Exit special mode / Return to REPL</td>
+      <td>[Backspace] on empty line</td>
+    </tr>
+    <tr>
+      <td>Exit REPL</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">exit</span><span class="x">()</span></code> or [Ctrl] + [D]</td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Standard libraries</h1>
+        </div>
+        
+        <p>To help Julia load faster, many core functionalities exist in standard libraries that come bundled with Julia. To make their functions available, use <code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">PackageName</span></code>. Here are some Standard Libraries and popular functions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Random</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rand</span></code>, <code class="language-julia highlighter-rouge"><span class="n">randn</span></code>, <code class="language-julia highlighter-rouge"><span class="n">randsubseq</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Statistics</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">mean</span></code>, <code class="language-julia highlighter-rouge"><span class="n">std</span></code>, <code class="language-julia highlighter-rouge"><span class="n">cor</span></code>, <code class="language-julia highlighter-rouge"><span class="n">median</span></code>, <code class="language-julia highlighter-rouge"><span class="n">quantile</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">LinearAlgebra</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">I</span></code>, <code class="language-julia highlighter-rouge"><span class="n">eigvals</span></code>, <code class="language-julia highlighter-rouge"><span class="n">eigvecs</span></code>, <code class="language-julia highlighter-rouge"><span class="n">det</span></code>, <code class="language-julia highlighter-rouge"><span class="n">cholesky</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">SparseArrays</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">sparse</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">SparseVector</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">SparseMatrixCSC</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Distributed</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="nd">@distributed</span></code>, <code class="language-julia highlighter-rouge"><span class="n">pmap</span></code>, <code class="language-julia highlighter-rouge"><span class="n">addprocs</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Dates</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="kt">DateTime</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">Date</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Package management</h1>
+        </div>
+        
+        <p>In Julia 1.0, there are two ways to work with the package manager:
+either with <code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Pkg</span></code> and using <code class="language-julia highlighter-rouge"><span class="n">Pkg</span></code> functions, or by typing <code class="language-julia highlighter-rouge"><span class="x">]</span></code> in the REPL to
+enter the special interactive package management mode. (To return to regular REPL, just
+hit <code class="language-julia highlighter-rouge"><span class="n">BACKSPACE</span></code> on an empty line in package management mode).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>List installed packages (human-readable)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Pkg</span><span class="o">.</span><span class="n">status</span><span class="x">()</span></code> or <code class="language-julia highlighter-rouge"><span class="x">]</span><span class="n">status</span></code></td>
+    </tr>
+    <tr>
+      <td>Update all packages</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Pkg</span><span class="o">.</span><span class="n">update</span><span class="x">()</span></code> or <code class="language-julia highlighter-rouge"><span class="n">up</span></code></td>
+    </tr>
+    <tr>
+      <td>Install <code class="language-julia highlighter-rouge"><span class="n">PackageName</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="x">(</span><span class="s">"PackageName"</span><span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="x">]</span><span class="n">add</span> <span class="n">PackageName</span></code></td>
+    </tr>
+    <tr>
+      <td>Rebuild <code class="language-julia highlighter-rouge"><span class="n">PackageName</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Pkg</span><span class="o">.</span><span class="n">build</span><span class="x">(</span><span class="s">"PackageName"</span><span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="x">]</span><span class="n">build</span> <span class="n">PackageName</span></code></td>
+    </tr>
+    <tr>
+      <td>Use <code class="language-julia highlighter-rouge"><span class="n">PackageName</span></code> (after install)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">PackageName</span></code></td>
+    </tr>
+    <tr>
+      <td>Remove <code class="language-julia highlighter-rouge"><span class="n">PackageName</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">Pkg</span><span class="o">.</span><span class="n">rm</span><span class="x">(</span><span class="s">"PackageName"</span><span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="n">rm</span> <span class="n">PackageName</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Characters and strings</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Character</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">chr</span> <span class="o">=</span> <span class="sc">'C'</span></code></td>
+    </tr>
+    <tr>
+      <td>String</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">str</span> <span class="o">=</span> <span class="s">"A string"</span></code></td>
+    </tr>
+    <tr>
+      <td>Loop through characters</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">str</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="n">c</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Concatenation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">str</span> <span class="o">=</span> <span class="s">"Learn"</span> <span class="o">*</span> <span class="s">" "</span> <span class="o">*</span> <span class="s">"Julia"</span></code></td>
+    </tr>
+    <tr>
+      <td>String interpolation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">println</span><span class="x">(</span><span class="s">"a * b = </span><span class="si">$</span><span class="s">(a*b)"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>First matching character or regular expression</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">findfirst</span><span class="x">(</span><span class="n">isequal</span><span class="x">(</span><span class="sc">'i'</span><span class="x">),</span> <span class="s">"Julia"</span><span class="x">)</span> <span class="o">==</span> <span class="mi">4</span></code></td>
+    </tr>
+    <tr>
+      <td>Replace substring or regular expression</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">replace</span><span class="x">(</span><span class="s">"Julia"</span><span class="x">,</span> <span class="s">"a"</span> <span class="o">=&gt;</span> <span class="s">"us"</span><span class="x">)</span> <span class="o">==</span> <span class="s">"Julius"</span></code></td>
+    </tr>
+    <tr>
+      <td>Last index (of collection)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">lastindex</span><span class="x">(</span><span class="s">"Hello"</span><span class="x">)</span> <span class="o">==</span> <span class="mi">5</span></code></td>
+    </tr>
+    <tr>
+      <td>Number of characters</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">length</span><span class="x">(</span><span class="s">"Hello"</span><span class="x">)</span> <span class="o">==</span> <span class="mi">5</span></code></td>
+    </tr>
+    <tr>
+      <td>Regular expression</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">pattern</span> <span class="o">=</span> <span class="n">r</span><span class="s">"l[aeiou]"</span></code></td>
+    </tr>
+    <tr>
+      <td>Subexpressions</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">str</span> <span class="o">=</span> <span class="s">"+1 234 567 890"</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">pat</span> <span class="o">=</span> <span class="n">r</span><span class="s">"\+([0-9]) ([0-9]+)"</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">m</span> <span class="o">=</span> <span class="n">match</span><span class="x">(</span><span class="n">pat</span><span class="x">,</span> <span class="n">str</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">m</span><span class="o">.</span><span class="n">captures</span> <span class="o">==</span> <span class="x">[</span><span class="s">"1"</span><span class="x">,</span> <span class="s">"234"</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>All occurrences</td>
+      <td><code class="language-julia highlighter-rouge"><span class="x">[</span><span class="n">m</span><span class="o">.</span><span class="n">match</span> <span class="k">for</span> <span class="n">m</span> <span class="o">=</span> <span class="n">eachmatch</span><span class="x">(</span><span class="n">pat</span><span class="x">,</span> <span class="n">str</span><span class="x">)]</span></code></td>
+    </tr>
+    <tr>
+      <td>All occurrences (as iterator)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">eachmatch</span><span class="x">(</span><span class="n">pat</span><span class="x">,</span> <span class="n">str</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Strings are immutable.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Numbers</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Integer types</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">IntN</span></code> and <code class="language-julia highlighter-rouge"><span class="n">UIntN</span></code>, with <code class="language-julia highlighter-rouge"><span class="n">N</span> <span class="n">∈</span> <span class="x">{</span><span class="mi">8</span><span class="x">,</span> <span class="mi">16</span><span class="x">,</span> <span class="mi">32</span><span class="x">,</span> <span class="mi">64</span><span class="x">,</span> <span class="mi">128</span><span class="x">}</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">BigInt</span></code></td>
+    </tr>
+    <tr>
+      <td>Floating-point types</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">FloatN</span></code> with <code class="language-julia highlighter-rouge"><span class="n">N</span> <span class="n">∈</span> <span class="x">{</span><span class="mi">16</span><span class="x">,</span> <span class="mi">32</span><span class="x">,</span> <span class="mi">64</span><span class="x">}</span></code><br /><code class="language-julia highlighter-rouge"><span class="kt">BigFloat</span></code></td>
+    </tr>
+    <tr>
+      <td>Minimum and maximum values by type</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">typemin</span><span class="x">(</span><span class="kt">Int8</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">typemax</span><span class="x">(</span><span class="kt">Int64</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Complex types</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kt">Complex</span><span class="x">{</span><span class="n">T</span><span class="x">}</span></code></td>
+    </tr>
+    <tr>
+      <td>Imaginary unit</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nb">im</span></code></td>
+    </tr>
+    <tr>
+      <td>Machine precision</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">eps</span><span class="x">()</span> <span class="c"># same as eps(Float64)</span></code></td>
+    </tr>
+    <tr>
+      <td>Rounding</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">round</span><span class="x">()</span>       <span class="c"># floating-point</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">round</span><span class="x">(</span><span class="kt">Int</span><span class="x">,</span> <span class="n">x</span><span class="x">)</span> <span class="c"># integer</span></code></td>
+    </tr>
+    <tr>
+      <td>Type conversions</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">convert</span><span class="x">(</span><span class="n">TypeName</span><span class="x">,</span> <span class="n">val</span><span class="x">)</span>  <span class="c"># attempt/error</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">typename</span><span class="x">(</span><span class="n">val</span><span class="x">)</span>           <span class="c"># calls convert</span></code></td>
+    </tr>
+    <tr>
+      <td>Global constants</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nb">pi</span> <span class="c"># 3.1415...</span></code><br /><code class="language-julia highlighter-rouge"><span class="nb">π</span>  <span class="c"># 3.1415...</span></code><br /><code class="language-julia highlighter-rouge"><span class="nb">im</span> <span class="c"># real(im * im) == -1</span></code></td>
+    </tr>
+    <tr>
+      <td>More constants</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Base</span><span class="o">.</span><span class="n">MathConstants</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Julia does not automatically check for numerical overflow. Use package
+<a href="https://github.com/JeffreySarnoff/SaferIntegers.jl">SaferIntegers</a> for ints
+with overflow checking.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Random Numbers</h1>
+        </div>
+        
+        <p>Many random number functions require <code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Random</span></code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Set seed</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">seed!</span><span class="x">(</span><span class="n">seed</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Random numbers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rand</span><span class="x">()</span>   <span class="c"># uniform [0, 1)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">randn</span><span class="x">()</span>  <span class="c"># normal (-Inf, Inf)</span></code></td>
+    </tr>
+    <tr>
+      <td>Random from Other Distribution</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Distributions</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">my_dist</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="x">(</span><span class="mf">0.2</span><span class="x">)</span> <span class="c"># For example</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">rand</span><span class="x">(</span><span class="n">my_dist</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Random subsample elements from A with inclusion probability p</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">randsubseq</span><span class="x">(</span><span class="n">A</span><span class="x">,</span> <span class="n">p</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Random permutation elements of A</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">shuffle</span><span class="x">(</span><span class="n">A</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Arrays</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Declaration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="kt">Float64</span><span class="x">[]</span></code></td>
+    </tr>
+    <tr>
+      <td>Pre-allocation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">sizehint!</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="mi">10</span><span class="o">^</span><span class="mi">4</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Access and assignment</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="kt">Any</span><span class="x">[</span><span class="mi">1</span><span class="x">,</span><span class="mi">2</span><span class="x">]</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">arr</span><span class="x">[</span><span class="mi">1</span><span class="x">]</span> <span class="o">=</span> <span class="s">"Some text"</span></code></td>
+    </tr>
+    <tr>
+      <td>Comparison</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">=</span> <span class="x">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="x">;]</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>      <span class="c"># b points to a</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">a</span><span class="x">[</span><span class="mi">1</span><span class="x">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">99</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">a</span> <span class="o">==</span> <span class="n">b</span>     <span class="c"># true</span></code></td>
+    </tr>
+    <tr>
+      <td>Copy elements (not address)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">b</span> <span class="o">=</span> <span class="n">copy</span><span class="x">(</span><span class="n">a</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">b</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="x">(</span><span class="n">a</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Select subarray from m to n</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">arr</span><span class="x">[</span><span class="n">m</span><span class="o">:</span><span class="n">n</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>n-element array with 0.0s</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">zeros</span><span class="x">(</span><span class="n">n</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>n-element array with 1.0s</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">ones</span><span class="x">(</span><span class="n">n</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>n-element array with #undefs</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kt">Vector</span><span class="x">{</span><span class="kt">Type</span><span class="x">}(</span><span class="nb">undef</span><span class="x">,</span> <span class="n">n</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>n equally spaced numbers from start to stop</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">range</span><span class="x">(</span><span class="n">start</span><span class="x">;</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="x">,</span> <span class="n">length</span><span class="o">=</span><span class="n">n</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Array with n random Int8 elements</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rand</span><span class="x">(</span><span class="kt">Int8</span><span class="x">,</span> <span class="n">n</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Fill array with val</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">fill!</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="n">val</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Pop last element</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">pop!</span><span class="x">(</span><span class="n">arr</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Pop first element</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">popfirst!</span><span class="x">(</span><span class="n">a</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Push val as last element</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">push!</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="n">val</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Push val as first element</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">pushfirst!</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="n">val</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Remove element at index idx</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">deleteat!</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="n">idx</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Sort</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">sort!</span><span class="x">(</span><span class="n">arr</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Append a with b</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">append!</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Check whether val is element</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">in</span><span class="x">(</span><span class="n">val</span><span class="x">,</span> <span class="n">arr</span><span class="x">)</span> <span class="n">or</span> <span class="n">val</span> <span class="k">in</span> <span class="n">arr</span></code></td>
+    </tr>
+    <tr>
+      <td>Scalar product</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">dot</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span> <span class="o">==</span> <span class="n">sum</span><span class="x">(</span><span class="n">a</span> <span class="o">.*</span> <span class="n">b</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Change dimensions (if possible)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">reshape</span><span class="x">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">6</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span><span class="err">'</span> <span class="o">==</span> <span class="x">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="x">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>To string (with delimiter del between elements)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">join</span><span class="x">(</span><span class="n">arr</span><span class="x">,</span> <span class="n">del</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Linear Algebra</h1>
+        </div>
+        
+        <p>For most linear algebra tools, use <code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">LinearAlgebra</span></code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Identity matrix</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">I</span>  <span class="c"># just use variable I. Will automatically conform to dimensions required.</span></code></td>
+    </tr>
+    <tr>
+      <td>Define matrix</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="x">[</span><span class="mi">1</span> <span class="mi">0</span><span class="x">;</span> <span class="mi">0</span> <span class="mi">1</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix dimensions</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">size</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code> th row</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span><span class="x">[</span><span class="n">i</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code> th column</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span><span class="x">[</span><span class="o">:</span><span class="x">,</span> <span class="n">i</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Concatenate horizontally</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="n">b</span><span class="x">]</span></code> or <code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="n">hcat</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Concatenate vertically</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="x">;</span> <span class="n">b</span><span class="x">]</span></code> or <code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="n">vcat</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix transposition</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">transpose</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Conjugate matrix transposition</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span><span class="err">'</span></code> or <code class="language-julia highlighter-rouge"><span class="n">adjoint</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix trace</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">tr</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix determinant</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">det</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix rank</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rank</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix eigenvalues</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">eigvals</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix eigenvectors</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">eigvecs</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Matrix inverse</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">inv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Solve <code class="language-julia highlighter-rouge"><span class="n">M</span><span class="o">*</span><span class="n">x</span> <span class="o">==</span> <span class="n">v</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">\</span> <span class="n">v</span></code> is <a class="tooltip" href="#">better <span> Numerically more stable and typically also faster. </span></a> than <code class="language-julia highlighter-rouge"><span class="n">inv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span> <span class="o">*</span> <span class="n">v</span></code></td>
+    </tr>
+    <tr>
+      <td>Moore-Penrose pseudo-inverse</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">pinv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Julia has built-in support for <a href="https://docs.julialang.org/en/v1.0.0/stdlib/LinearAlgebra/">matrix
+decompositions</a>.</p>
+
+<p>Julia tries to infer whether matrices are of a special type (symmetric,
+hermitian, etc.), but sometimes fails. To aid Julia in dispatching the
+optimal algorithms, special matrices can be declared to have a structure
+with functions like <code class="language-julia highlighter-rouge"><span class="kt">Symmetric</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">Hermitian</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">UpperTriangular</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">LowerTriangular</span></code>,
+<code class="language-julia highlighter-rouge"><span class="kt">Diagonal</span></code> , and more.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Control flow and loops</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Conditional</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">if</span><span class="o">-</span><span class="k">elseif</span><span class="o">-</span><span class="k">else</span><span class="o">-</span><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Simple <code class="language-julia highlighter-rouge"><span class="k">for</span></code> loop</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="n">i</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Unnested for loop</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="x">,</span> <span class="n">j</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">5</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">j</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Enumeration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="x">(</span><span class="n">idx</span><span class="x">,</span> <span class="n">val</span><span class="x">)</span> <span class="k">in</span> <span class="n">enumerate</span><span class="x">(</span><span class="n">arr</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="s">"the </span><span class="si">$</span><span class="s">idx-th element is </span><span class="si">$</span><span class="s">val"</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td><code class="language-julia highlighter-rouge"><span class="k">while</span></code> loop</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">while</span> <span class="n">bool_expr</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Exit loop</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">break</span></code></td>
+    </tr>
+    <tr>
+      <td>Exit iteration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">continue</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Functions</h1>
+        </div>
+        
+        <p>All arguments to functions are passed by reference.</p>
+
+<p>Functions with <code class="language-julia highlighter-rouge"><span class="o">!</span></code> appended change at least one argument, typically the first:
+<code class="language-julia highlighter-rouge"><span class="n">sort!</span><span class="x">(</span><span class="n">arr</span><span class="x">)</span></code>.</p>
+
+<p>Required arguments are separated with a comma and use the positional notation.</p>
+
+<p>Optional arguments need a default value in the signature, defined with <code class="language-julia highlighter-rouge"><span class="o">=</span></code>.</p>
+
+<p>Keyword arguments use the named notation and are listed in the function’s
+signature after the semicolon:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">function</span><span class="nf"> func</span><span class="x">(</span><span class="n">req1</span><span class="x">,</span> <span class="n">req2</span><span class="x">;</span> <span class="n">key1</span><span class="o">=</span><span class="n">dflt1</span><span class="x">,</span> <span class="n">key2</span><span class="o">=</span><span class="n">dflt2</span><span class="x">)</span>
+    <span class="c"># do stuff</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>The semicolon is <em>not</em> required in the call to a function that accepts keyword arguments.</p>
+
+<p>The <code class="language-julia highlighter-rouge"><span class="k">return</span></code> statement is optional but highly recommended.</p>
+
+<p>Multiple data structures can be returned as a tuple in a single <code class="language-julia highlighter-rouge"><span class="k">return</span></code> statement.</p>
+
+<p>Command line arguments <code class="language-julia highlighter-rouge"><span class="n">julia</span> <span class="n">script</span><span class="o">.</span><span class="n">jl</span> <span class="n">arg1</span> <span class="n">arg2</span><span class="o">...</span></code> can be processed from global
+constant <code class="language-julia highlighter-rouge"><span class="nb">ARGS</span></code>:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">for</span> <span class="n">arg</span> <span class="k">in</span> <span class="nb">ARGS</span>
+    <span class="n">println</span><span class="x">(</span><span class="n">arg</span><span class="x">)</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Anonymous functions can best be used in collection functions or list comprehensions:
+<code class="language-julia highlighter-rouge"><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span></code>.</p>
+
+<p>Functions can accept a variable number of arguments:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">function</span><span class="nf"> func</span><span class="x">(</span><span class="n">a</span><span class="o">...</span><span class="x">)</span>
+    <span class="n">println</span><span class="x">(</span><span class="n">a</span><span class="x">)</span>
+<span class="k">end</span>
+
+<span class="n">func</span><span class="x">(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="x">[</span><span class="mi">3</span><span class="o">:</span><span class="mi">5</span><span class="x">])</span> <span class="c"># tuple: (1, 2, UnitRange{Int64}[3:5])</span>
+</code></pre></div></div>
+
+<p>Functions can be nested:</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="k">function</span><span class="nf"> outerfunction</span><span class="x">()</span>
+    <span class="c"># do some outer stuff</span>
+    <span class="k">function</span><span class="nf"> innerfunction</span><span class="x">()</span>
+        <span class="c"># do inner stuff</span>
+        <span class="c"># can access prior outer definitions</span>
+    <span class="k">end</span>
+    <span class="c"># do more outer stuff</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Functions can have explicit return types</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c"># take any Number subtype and return it as a String</span>
+<span class="k">function</span><span class="nf"> stringifynumber</span><span class="x">(</span><span class="n">num</span><span class="o">::</span><span class="n">T</span><span class="x">)</span><span class="o">::</span><span class="kt">String</span> <span class="k">where</span> <span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Number</span>
+    <span class="k">return</span> <span class="s">"</span><span class="si">$</span><span class="s">num"</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Functions can be
+<a href="https://docs.julialang.org/en/v1/manual/functions/#man-vectorized-1">vectorized</a>
+by using the Dot Syntax</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="c"># here we broadcast the subtraction of each mean value</span>
+<span class="c"># by using the dot operator</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">Statistics</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">A</span> <span class="o">=</span> <span class="n">rand</span><span class="x">(</span><span class="mi">3</span><span class="x">,</span> <span class="mi">4</span><span class="x">);</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">B</span> <span class="o">=</span> <span class="n">A</span> <span class="o">.-</span> <span class="n">mean</span><span class="x">(</span><span class="n">A</span><span class="x">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
+<span class="mi">3</span><span class="n">×4</span> <span class="kt">Array</span><span class="x">{</span><span class="kt">Float64</span><span class="x">,</span><span class="mi">2</span><span class="x">}</span><span class="o">:</span>
+  <span class="mf">0.0387438</span>     <span class="mf">0.112224</span>  <span class="o">-</span><span class="mf">0.0541478</span>   <span class="mf">0.455245</span>
+  <span class="mf">0.000773337</span>   <span class="mf">0.250006</span>   <span class="mf">0.0140011</span>  <span class="o">-</span><span class="mf">0.289532</span>
+ <span class="o">-</span><span class="mf">0.0395171</span>    <span class="o">-</span><span class="mf">0.36223</span>    <span class="mf">0.0401467</span>  <span class="o">-</span><span class="mf">0.165713</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">mean</span><span class="x">(</span><span class="n">B</span><span class="x">,</span> <span class="n">dims</span><span class="o">=</span><span class="mi">1</span><span class="x">)</span>
+<span class="mi">1</span><span class="n">×4</span> <span class="kt">Array</span><span class="x">{</span><span class="kt">Float64</span><span class="x">,</span><span class="mi">2</span><span class="x">}</span><span class="o">:</span>
+ <span class="o">-</span><span class="mf">7.40149e-17</span>  <span class="mf">7.40149e-17</span>  <span class="mf">1.85037e-17</span>  <span class="mf">3.70074e-17</span>
+</code></pre></div></div>
+
+<p>Julia generates <a class="tooltip" href="#">specialized versions<span> Multiple dispatch a type of
+polymorphism that dynamically determines which version of a function to
+call. In this context, dynamic means that it is resolved at run-time,
+whereas method overloading is resolved at compile time. Julia manages
+multiple dispatch completely in the background. Of course, you can
+provide custom function overloadings with type annotations. </span></a>
+of functions based on data types. When a function is called with the
+same argument types again, Julia can look up the native machine code and
+skip the compilation process.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Dictionaries</h1>
+        </div>
+        
+        
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dictionary</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">d</span> <span class="o">=</span> <span class="kt">Dict</span><span class="x">(</span><span class="n">key1</span> <span class="o">=&gt;</span> <span class="n">val1</span><span class="x">,</span> <span class="n">key2</span> <span class="o">=&gt;</span> <span class="n">val2</span><span class="x">,</span> <span class="o">...</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">d</span> <span class="o">=</span> <span class="kt">Dict</span><span class="x">(</span><span class="o">:</span><span class="n">key1</span> <span class="o">=&gt;</span> <span class="n">val1</span><span class="x">,</span> <span class="o">:</span><span class="n">key2</span> <span class="o">=&gt;</span> <span class="n">val2</span><span class="x">,</span> <span class="o">...</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>All keys (iterator)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">keys</span><span class="x">(</span><span class="n">d</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>All values (iterator)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">values</span><span class="x">(</span><span class="n">d</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Loop through key-value pairs</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="x">(</span><span class="n">k</span><span class="x">,</span> <span class="n">v</span><span class="x">)</span> <span class="k">in</span> <span class="n">d</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="s">"key: </span><span class="si">$</span><span class="s">k, value: </span><span class="si">$</span><span class="s">v"</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Check for key <code class="language-julia highlighter-rouge"><span class="o">:</span><span class="n">k</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">haskey</span><span class="x">(</span><span class="n">d</span><span class="x">,</span> <span class="o">:</span><span class="n">k</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Copy keys (or values) to array</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="n">collect</span><span class="x">(</span><span class="n">keys</span><span class="x">(</span><span class="n">d</span><span class="x">))</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="x">[</span><span class="n">k</span> <span class="k">for</span> <span class="x">(</span><span class="n">k</span><span class="x">,</span> <span class="n">v</span><span class="x">)</span> <span class="k">in</span> <span class="n">d</span><span class="x">]</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Dictionaries are mutable; when symbols are used as keys, the keys are immutable.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Sets</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Declaration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">s</span> <span class="o">=</span> <span class="kt">Set</span><span class="x">([</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="mi">3</span><span class="x">,</span> <span class="s">"Some text"</span><span class="x">])</span></code></td>
+    </tr>
+    <tr>
+      <td>Union <code class="language-julia highlighter-rouge"><span class="n">s1</span> <span class="n">∪</span> <span class="n">s2</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">union</span><span class="x">(</span><span class="n">s1</span><span class="x">,</span> <span class="n">s2</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Intersection <code class="language-julia highlighter-rouge"><span class="n">s1</span> <span class="n">∩</span> <span class="n">s2</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">intersect</span><span class="x">(</span><span class="n">s1</span><span class="x">,</span> <span class="n">s2</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Difference <code class="language-julia highlighter-rouge"><span class="n">s1</span> <span class="o">\\</span> <span class="n">s2</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">setdiff</span><span class="x">(</span><span class="n">s1</span><span class="x">,</span> <span class="n">s2</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Difference <code class="language-julia highlighter-rouge"><span class="n">s1</span> <span class="n">△</span> <span class="n">s2</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">symdiff</span><span class="x">(</span><span class="n">s1</span><span class="x">,</span> <span class="n">s2</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Subset <code class="language-julia highlighter-rouge"><span class="n">s1</span> <span class="n">⊆</span> <span class="n">s2</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">issubset</span><span class="x">(</span><span class="n">s1</span><span class="x">,</span> <span class="n">s2</span><span class="x">)</span>      </code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Checking whether an element is contained in a set is done in O(1).</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Collection functions</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Apply f to all elements of collection coll</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">map</span><span class="x">(</span><span class="n">f</span><span class="x">,</span> <span class="n">coll</span><span class="x">)</span></code> or<br /><code class="language-julia highlighter-rouge"><span class="n">map</span><span class="x">(</span><span class="n">coll</span><span class="x">)</span> <span class="k">do</span> <span class="n">elem</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff with elem</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># must contain return</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Filter coll for true values of f</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">filter</span><span class="x">(</span><span class="n">f</span><span class="x">,</span> <span class="n">coll</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>List comprehension</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="x">[</span><span class="n">f</span><span class="x">(</span><span class="n">elem</span><span class="x">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">coll</span><span class="x">]</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Types</h1>
+        </div>
+        
+        <p>Julia has no classes and thus no class-specific methods.</p>
+
+<p>Types are like classes without methods.</p>
+
+<p>Abstract types can be subtyped but not instantiated.</p>
+
+<p>Concrete types cannot be subtyped.</p>
+
+<p>By default, <code class="language-julia highlighter-rouge"><span class="k">struct</span></code> s are immutable.</p>
+
+<p>Immutable types enhance performance and are thread safe, as they can be
+shared among threads without the need for synchronization.</p>
+
+<p>Objects that may be one of a set of types are called <code class="language-julia highlighter-rouge"><span class="kt">Union</span></code> types.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type annotation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">var</span><span class="o">::</span><span class="n">TypeName</span></code></td>
+    </tr>
+    <tr>
+      <td>Type declaration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">struct</span><span class="nc"> Programmer</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">name</span><span class="o">::</span><span class="kt">String</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">birth_year</span><span class="o">::</span><span class="kt">UInt16</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">fave_language</span><span class="o">::</span><span class="kt">AbstractString</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Mutable type declaration</td>
+      <td>replace struct with mutable struct</td>
+    </tr>
+    <tr>
+      <td>Type alias</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kd">const</span> <span class="n">Nerd</span> <span class="o">=</span> <span class="n">Programmer</span></code></td>
+    </tr>
+    <tr>
+      <td>Type constructors</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">methods</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Type instantiation</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">me</span> <span class="o">=</span> <span class="n">Programmer</span><span class="x">(</span><span class="s">"Ian"</span><span class="x">,</span> <span class="mi">1984</span><span class="x">,</span> <span class="s">"Julia"</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">me</span> <span class="o">=</span> <span class="n">Nerd</span><span class="x">(</span><span class="s">"Ian"</span><span class="x">,</span> <span class="mi">1984</span><span class="x">,</span> <span class="s">"Julia"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Subtype declaration</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">abstract type</span><span class="nc"> Bird</span> <span class="k">end</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">struct</span><span class="nc"> Duck</span> <span class="o">&lt;:</span> <span class="n">Bird</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">pond</span><span class="o">::</span><span class="kt">String</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Parametric type</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">struct</span><span class="nc"> Point</span><span class="x">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Real</span><span class="x">}</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">x</span><span class="o">::</span><span class="n">T</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">y</span><span class="o">::</span><span class="n">T</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="n">p</span> <span class="o">=</span><span class="n">Point</span><span class="x">{</span><span class="kt">Float64</span><span class="x">}(</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">)</span></code><br /></td>
+    </tr>
+    <tr>
+      <td>Union types</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kt">Union</span><span class="x">{</span><span class="kt">Int</span><span class="x">,</span> <span class="kt">String</span><span class="x">}</span></code></td>
+    </tr>
+    <tr>
+      <td>Traverse type hierarchy</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">supertype</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code> and <code class="language-julia highlighter-rouge"><span class="n">subtypes</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Default supertype</td>
+      <td><code class="language-julia highlighter-rouge"><span class="kt">Any</span></code></td>
+    </tr>
+    <tr>
+      <td>All fields</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">fieldnames</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>All field types</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">TypeName</span><span class="o">.</span><span class="n">types</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>When a type is defined with an <em>inner</em> constructor, the default <em>outer</em>
+constructors are not available and have to be defined manually if need
+be. An inner constructor is best used to check whether the parameters
+conform to certain (invariance) conditions. Obviously, these invariants
+can be violated by accessing and modifying the fields directly, unless
+the type is defined as immutable. The <code class="language-julia highlighter-rouge"><span class="n">new</span></code> keyword may be used to
+create an object of the same type.</p>
+
+<p>Type parameters are invariant, which means that <code class="language-julia highlighter-rouge"><span class="n">Point</span><span class="x">{</span><span class="kt">Float64</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="n">Point</span><span class="x">{</span><span class="kt">Real</span><span class="x">}</span></code> is
+false, even though <code class="language-julia highlighter-rouge"><span class="kt">Float64</span> <span class="o">&lt;:</span> <span class="kt">Real</span></code>.
+Tuple types, on the other hand, are covariant: <code class="language-julia highlighter-rouge"><span class="kt">Tuple</span><span class="x">{</span><span class="kt">Float64</span><span class="x">}</span> <span class="o">&lt;:</span> <span class="kt">Tuple</span><span class="x">{</span><span class="kt">Real</span><span class="x">}</span></code>.</p>
+
+<p>The type-inferred form of Julia’s internal representation can be found
+with <code class="language-julia highlighter-rouge"><span class="n">code_typed</span><span class="x">()</span></code>. This is useful to identify where <code class="language-julia highlighter-rouge"><span class="kt">Any</span></code> rather
+than type-specific native code is generated.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Missing and Nothing</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Programmers Null</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nb">nothing</span></code></td>
+    </tr>
+    <tr>
+      <td>Missing Data</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nb">missing</span></code></td>
+    </tr>
+    <tr>
+      <td>Not a Number in Float</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nb">NaN</span></code></td>
+    </tr>
+    <tr>
+      <td>Filter missings</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">collect</span><span class="x">(</span><span class="n">skipmissing</span><span class="x">([</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">,</span> <span class="nb">missing</span><span class="x">]))</span> <span class="o">==</span> <span class="x">[</span><span class="mi">1</span><span class="x">,</span> <span class="mi">2</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Replace missings</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">collect</span><span class="x">((</span><span class="n">df</span><span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">],</span> <span class="mi">1</span><span class="x">))</span></code></td>
+    </tr>
+    <tr>
+      <td>Check if missing</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">ismissing</span><span class="x">(</span><span class="n">x</span><span class="x">)</span></code> <strong>not</strong> <code class="language-julia highlighter-rouge"><span class="n">x</span> <span class="o">==</span> <span class="nb">missing</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Exceptions</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Throw SomeExcep</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">throw</span><span class="x">(</span><span class="n">SomeExcep</span><span class="x">())</span></code></td>
+    </tr>
+    <tr>
+      <td>Rethrow current exception</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rethrow</span><span class="x">()</span></code></td>
+    </tr>
+    <tr>
+      <td>Define NewExcep</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">struct</span><span class="nc"> NewExcep</span> <span class="o">&lt;:</span> <span class="kt">Exception</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">v</span><span class="o">::</span><span class="kt">String</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="n">Base</span><span class="o">.</span><span class="n">showerror</span><span class="x">(</span><span class="n">io</span><span class="o">::</span><span class="kt">IO</span><span class="x">,</span> <span class="n">e</span><span class="o">::</span><span class="n">NewExcep</span><span class="x">)</span> <span class="o">=</span> <span class="n">print</span><span class="x">(</span><span class="n">io</span><span class="x">,</span> <span class="s">"A problem with </span><span class="si">$</span><span class="s">(e.v)!"</span><span class="x">)</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="n">throw</span><span class="x">(</span><span class="n">NewExcep</span><span class="x">(</span><span class="s">"x"</span><span class="x">))</span></code></td>
+    </tr>
+    <tr>
+      <td>Throw error with msg text</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">error</span><span class="x">(</span><span class="n">msg</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Handler</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">try</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do something potentially iffy</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">catch</span> <span class="n">ex</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">if</span> <span class="k">isa</span><span class="x">(</span><span class="n">ex</span><span class="x">,</span> <span class="n">SomeExcep</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">        <span class="c"># handle SomeExcep</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">elseif</span> <span class="k">isa</span><span class="x">(</span><span class="n">ex</span><span class="x">,</span> <span class="n">AnotherExcep</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">        <span class="c"># handle AnotherExcep</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">else</span></code><br /><code class="language-julia highlighter-rouge">        <span class="c"># handle all others</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">end</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">finally</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do this in any case</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Modules</h1>
+        </div>
+        
+        <p>Modules are separate global variable workspaces that group together similar functionality.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Definition</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">module</span> <span class="n">PackageName</span></code><br /><code class="language-julia highlighter-rouge"><span class="c"># add module definitions</span></code><br /><code class="language-julia highlighter-rouge"><span class="c"># use export to make definitions accessible</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Include <code class="language-julia highlighter-rouge"><span class="n">filename</span><span class="o">.</span><span class="n">jl</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">include</span><span class="x">(</span><span class="s">"filename.jl"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Load</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">ModuleName</span>        <span class="c"># all exported names</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">ModuleName</span><span class="o">:</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span>              <span class="c"># only x, y</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">ModuleName</span><span class="o">.</span><span class="n">x</span><span class="x">,</span> <span class="n">ModuleName</span><span class="o">.</span><span class="n">y</span><span class="o">:</span>   <span class="c"># only x, y</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">import</span> <span class="n">ModuleName</span>       <span class="c"># only ModuleName</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">import</span> <span class="n">ModuleName</span><span class="o">:</span> <span class="n">x</span><span class="x">,</span> <span class="n">y</span>             <span class="c"># only x, y</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">import</span> <span class="n">ModuleName</span><span class="o">.</span><span class="n">x</span><span class="x">,</span> <span class="n">ModuleName</span><span class="o">.</span><span class="n">y</span>   <span class="c"># only x, y</span></code></td>
+    </tr>
+    <tr>
+      <td>Exports</td>
+      <td><code class="language-julia highlighter-rouge"><span class="c"># Get an array of names exported by Module</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">names</span><span class="x">(</span><span class="n">ModuleName</span><span class="x">)</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="c"># include non-exports, deprecateds</span></code><br /><code class="language-julia highlighter-rouge"><span class="c"># and compiler-generated names</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">names</span><span class="x">(</span><span class="n">ModuleName</span><span class="x">,</span> <span class="n">all</span><span class="o">::</span><span class="kt">Bool</span><span class="x">)</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="c">#also show namesexplicitely imported from other modules</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">names</span><span class="x">(</span><span class="n">ModuleName</span><span class="x">,</span> <span class="n">all</span><span class="o">::</span><span class="kt">Bool</span><span class="x">,</span> <span class="n">imported</span><span class="o">::</span><span class="kt">Bool</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>There is only one difference between <code class="language-julia highlighter-rouge"><span class="k">using</span></code> and <code class="language-julia highlighter-rouge"><span class="k">import</span></code> : with <code class="language-julia highlighter-rouge"><span class="k">using</span></code> you need to say
+<code class="language-julia highlighter-rouge"><span class="k">function</span><span class="nf"> Foo</span><span class="o">.</span><span class="n">bar</span><span class="x">(</span><span class="o">..</span></code> to extend module <code class="language-julia highlighter-rouge"><span class="n">Foo</span></code>’s function <code class="language-julia highlighter-rouge"><span class="n">bar</span></code> with a new method, but
+with <code class="language-julia highlighter-rouge"><span class="k">import</span> <span class="n">Foo</span><span class="o">.</span><span class="n">bar</span></code>, you only need to say <code class="language-julia highlighter-rouge"><span class="k">function</span><span class="nf"> bar</span><span class="x">(</span><span class="o">...</span></code> and it automatically
+extends module <code class="language-julia highlighter-rouge"><span class="n">Foo</span></code>’s function <code class="language-julia highlighter-rouge"><span class="n">bar</span></code> .</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Expressions</h1>
+        </div>
+        
+        <p>Julia is homoiconic: programs are represented as data structures of the
+language itself. In fact, everything is an expression <code class="language-julia highlighter-rouge"><span class="kt">Expr</span></code>.</p>
+
+<p>Symbols are <a class="tooltip" href="#">interned strings <span> Only one copy of each distinct
+(immutable) string value is stored. </span></a> prefixed with a colon.
+Symbols are more efficient and they are typically used as identifiers,
+keys (in dictionaries), or columns in data frames. Symbols cannot be
+concatenated.</p>
+
+<p>Quoting <code class="language-julia highlighter-rouge"><span class="o">:</span><span class="x">(</span> <span class="o">...</span> <span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="k">quote</span> <span class="o">...</span> <span class="k">end</span></code> creates an expression, just
+like <a class="tooltip" href="#"><code class="language-julia highlighter-rouge"><span class="n">parse</span><span class="x">(</span><span class="n">str</span><span class="x">)</span></code> <span> This form is probably most familiar to
+people with knowledge of dynamic SQL. The <code class="language-julia highlighter-rouge"><span class="n">parse</span></code> function is similar
+to Oracle”s and PostgreSQL”s <code class="language-julia highlighter-rouge"><span class="n">EXECUTE</span> <span class="n">IMMEDIATE</span></code> statement or SQL
+Server’s <code class="language-julia highlighter-rouge"><span class="n">sp_executesql</span><span class="x">()</span></code> procedure. </span></a> , and <code class="language-julia highlighter-rouge"><span class="kt">Expr</span><span class="x">(</span><span class="o">:</span><span class="n">call</span><span class="x">,</span> <span class="o">...</span><span class="x">)</span></code>.</p>
+
+<div class="language-julia highlighter-rouge"><div class="highlight"><pre class="syntax"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">line</span> <span class="o">=</span> <span class="s">"1 + </span><span class="si">$</span><span class="s">x"</span>      <span class="c"># some code</span>
+<span class="n">expr</span> <span class="o">=</span> <span class="n">parse</span><span class="x">(</span><span class="n">line</span><span class="x">)</span>   <span class="c"># make an Expr object</span>
+<span class="n">typeof</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span> <span class="o">==</span> <span class="kt">Expr</span> <span class="c"># true</span>
+<span class="n">dump</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span>           <span class="c"># generate abstract syntax tree</span>
+<span class="n">eval</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span> <span class="o">==</span> <span class="mi">2</span>      <span class="c"># evaluate Expr object: true</span>
+</code></pre></div></div>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Macros</h1>
+        </div>
+        
+        <p>Macros allow generated code (i.e. expressions) to be included in a
+program.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Definition</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">macro</span><span class="nf"> macroname</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Usage</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">macroname</span><span class="x">(</span><span class="n">ex1</span><span class="x">,</span> <span class="n">ex2</span><span class="x">,</span> <span class="o">...</span><span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="nd">@macroname</span> <span class="n">ex1</span><span class="x">,</span> <span class="n">ex2</span><span class="x">,</span> <span class="o">...</span></code></td>
+    </tr>
+    <tr>
+      <td>Built-in macros</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nd">@test</span>           <span class="c"># equal (exact)</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@test_approx_eq</span> <span class="c"># equal (modulo numerical errors)</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@test</span> <span class="n">x</span> <span class="n">≈</span> <span class="n">y</span>    <span class="c"># isapprox(x, y)</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@assert</span>         <span class="c"># assert (unit test)</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@which</span>          <span class="c"># types used</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@time</span>           <span class="c"># time and memory statistics</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@elapsed</span>        <span class="c"># time elapsed</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@allocated</span>      <span class="c"># memory allocated</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@profile</span>        <span class="c"># profile</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@spawn</span>          <span class="c"># run at some worker</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@spawnat</span>        <span class="c"># run at specified worker</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@async</span>          <span class="c"># asynchronous task</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@distributed</span>    <span class="c"># parallel for loop</span></code><br /><code class="language-julia highlighter-rouge"><span class="nd">@everywhere</span>     <span class="c"># make available to workers</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Parallel Computing</h1>
+        </div>
+        
+        <p>Parallel computing tools are available in the <code class="language-julia highlighter-rouge"><span class="n">Distributed</span></code> standard library.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Launch REPL with N workers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">julia</span> <span class="o">-</span><span class="n">p</span> <span class="n">N</span></code></td>
+    </tr>
+    <tr>
+      <td>Number of available workers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">nprocs</span><span class="x">()</span></code></td>
+    </tr>
+    <tr>
+      <td>Add N workers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">addprocs</span><span class="x">(</span><span class="n">N</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>See all worker ids</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">pid</span> <span class="k">in</span> <span class="n">workers</span><span class="x">()</span></code><br /><code class="language-julia highlighter-rouge">    <span class="n">println</span><span class="x">(</span><span class="n">pid</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Get id of executing worker</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">myid</span><span class="x">()</span></code></td>
+    </tr>
+    <tr>
+      <td>Remove worker</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">rmprocs</span><span class="x">(</span><span class="n">pid</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Run f with arguments args on pid</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">r</span> <span class="o">=</span> <span class="n">remotecall</span><span class="x">(</span><span class="n">f</span><span class="x">,</span> <span class="n">pid</span><span class="x">,</span> <span class="n">args</span><span class="o">...</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="c"># or:</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">r</span> <span class="o">=</span> <span class="nd">@spawnat</span> <span class="n">pid</span> <span class="n">f</span><span class="x">(</span><span class="n">args</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="o">...</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">fetch</span><span class="x">(</span><span class="n">r</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Run f with arguments args on pid (more efficient)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">remotecall_fetch</span><span class="x">(</span><span class="n">f</span><span class="x">,</span> <span class="n">pid</span><span class="x">,</span> <span class="n">args</span><span class="o">...</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Run f with arguments args on any worker</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">r</span> <span class="o">=</span> <span class="nd">@spawn</span> <span class="n">f</span><span class="x">(</span><span class="n">args</span><span class="x">)</span> <span class="o">...</span> <span class="n">fetch</span><span class="x">(</span><span class="n">r</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Run f with arguments args on all workers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">r</span> <span class="o">=</span> <span class="x">[</span><span class="nd">@spawnat</span> <span class="n">w</span> <span class="n">f</span><span class="x">(</span><span class="n">args</span><span class="x">)</span> <span class="k">for</span> <span class="n">w</span> <span class="k">in</span> <span class="n">workers</span><span class="x">()]</span> <span class="o">...</span> <span class="n">fetch</span><span class="x">(</span><span class="n">r</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Make expr available to all workers</td>
+      <td><code class="language-julia highlighter-rouge"><span class="nd">@everywhere</span> <span class="n">expr</span></code></td>
+    </tr>
+    <tr>
+      <td>Parallel for loop with <a class="tooltip" href="#">reducer<span>A reducer combines the results from different (independent) workers.</span></a> function red</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">sum</span> <span class="o">=</span> <span class="nd">@distributed</span> <span class="x">(</span><span class="n">red</span><span class="x">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="o">^</span><span class="mi">6</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do parallelstuff</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Apply f to all elements in collection coll</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">pmap</span><span class="x">(</span><span class="n">f</span><span class="x">,</span> <span class="n">coll</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Workers are also known as concurrent/parallel processes.</p>
+
+<p>Modules with parallel processing capabilities are best split into a
+functions file that contains all the functions and variables needed by
+all workers, and a driver file that handles the processing of data. The
+driver file obviously has to import the functions file.</p>
+
+<p>A non-trivial (word count) example of a reducer function is provided by
+<a href="https://blog.ajdecon.org/parallel-word-count-with-julia-an-interesting">Adam DeConinck</a>.</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>I/O</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Read stream</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">stream</span> <span class="o">=</span> <span class="nb">stdin</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">eachline</span><span class="x">(</span><span class="n">stream</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Read file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">open</span><span class="x">(</span><span class="n">filename</span><span class="x">)</span> <span class="k">do</span> <span class="n">file</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">eachline</span><span class="x">(</span><span class="n">file</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">        <span class="c"># do stuff</span></code><br /><code class="language-julia highlighter-rouge">    <span class="k">end</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Read CSV file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">CSV</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">data</span> <span class="o">=</span> <span class="n">CSV</span><span class="o">.</span><span class="n">read</span><span class="x">(</span><span class="n">filename</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Write CSV file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">CSV</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">CSV</span><span class="o">.</span><span class="n">write</span><span class="x">(</span><span class="n">filename</span><span class="x">,</span> <span class="n">data</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Save Julia Object</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">JLD</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">save</span><span class="x">(</span><span class="n">filename</span><span class="x">,</span> <span class="s">"object_key"</span><span class="x">,</span> <span class="n">object</span><span class="x">,</span> <span class="o">...</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Load Julia Object</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">JLD</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">d</span> <span class="o">=</span> <span class="n">load</span><span class="x">(</span><span class="n">filename</span><span class="x">)</span> <span class="c"># Returns a dict of objects</span></code></td>
+    </tr>
+    <tr>
+      <td>Save HDF5</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">HDF5</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">h5write</span><span class="x">(</span><span class="n">filename</span><span class="x">,</span> <span class="s">"key"</span><span class="x">,</span> <span class="n">object</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Load HDF5</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">HDF5</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">h5read</span><span class="x">(</span><span class="n">filename</span><span class="x">,</span> <span class="s">"key"</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Read MAT file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">MAT</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">vars</span> <span class="o">=</span> <span class="n">matread</span><span class="x">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Read CSV file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">CSV</span></code><br /><code class="language-julia julia highlighter-rouge"><span class="n">CSV</span><span class="o">.</span><span class="n">File</span><span class="x">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="x">)</span></code><br /><br /><code class="language-julia highlighter-rouge"><span class="c"># load into DataFrame</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">CSV</span><span class="x">,</span> <span class="n">DataFrames</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">df</span> <span class="o">=</span> <span class="n">CSV</span><span class="o">.</span><span class="n">File</span><span class="x">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="x">)</span> <span class="o">|&gt;</span> <span class="n">DataFrame!</span></code></td>
+    </tr>
+    <tr>
+      <td>Read image file</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">FileIO</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">img</span> <span class="o">=</span> <span class="n">load</span><span class="x">(</span><span class="n">path</span><span class="o">::</span><span class="kt">String</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>DataFrames</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Read Stata, SPSS, etc.</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">StatFiles</span></code> Package</td>
+    </tr>
+    <tr>
+      <td><a class="tooltip" href="#">Describe<span>Similar to <code class="language-julia highlighter-rouge"><span class="n">summary</span><span class="x">(</span><span class="n">df</span><span class="x">)</span></code> in R.</span></a> data frame</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">describe</span><span class="x">(</span><span class="n">df</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Make vector of column <code class="language-julia highlighter-rouge"><span class="n">col</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">v</span> <span class="o">=</span> <span class="n">df</span><span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Sort by <code class="language-julia highlighter-rouge"><span class="n">col</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">sort!</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">])</span></code></td>
+    </tr>
+    <tr>
+      <td><a class="tooltip" href="#">Categorical<span>Similar to <code class="language-julia highlighter-rouge"><span class="n">df</span><span class="o">$</span><span class="n">col</span> <span class="o">=</span> <span class="n">as</span><span class="o">.</span><span class="n">factor</span><span class="x">(</span><span class="n">df</span><span class="o">$</span><span class="n">col</span><span class="x">)</span></code> in R.</span> <code class="language-julia highlighter-rouge"><span class="n">col</span></code></a></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">categorical!</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">])</span></code></td>
+    </tr>
+    <tr>
+      <td>List <code class="language-julia highlighter-rouge"><span class="n">col</span></code> levels</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">levels</span><span class="x">(</span><span class="n">df</span><span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">])</span></code></td>
+    </tr>
+    <tr>
+      <td>All observations with <code class="language-julia highlighter-rouge"><span class="n">col</span><span class="o">==</span><span class="n">val</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">df</span><span class="x">[</span><span class="n">df</span><span class="x">[</span><span class="o">:</span><span class="n">col</span><span class="x">]</span> <span class="o">.==</span> <span class="n">val</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span></code></td>
+    </tr>
+    <tr>
+      <td>Reshape from wide to long format</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">stack</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">[</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="x">;</span> <span class="x">])</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">stack</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">col1</span><span class="x">,</span> <span class="o">:</span><span class="n">col2</span><span class="x">,</span> <span class="o">...</span><span class="x">]</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">melt</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="x">[</span><span class="o">:</span><span class="n">col1</span><span class="x">,</span> <span class="o">:</span><span class="n">col2</span><span class="x">])</span> <span class="x">[</span></code></td>
+    </tr>
+    <tr>
+      <td>Reshape from long to wide format</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">unstack</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="o">:</span><span class="n">id</span><span class="x">,</span> <span class="o">:</span><span class="n">val</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Make <code class="language-julia highlighter-rouge"><span class="n">Nullable</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">allowmissing!</span><span class="x">(</span><span class="n">df</span><span class="x">)</span></code> or <code class="language-julia highlighter-rouge"><span class="n">allowmissing!</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="o">:</span><span class="n">col</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Loop over Rows</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">r</span> <span class="k">in</span> <span class="n">eachrow</span><span class="x">(</span><span class="n">df</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff.</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># r is Struct with fields of col names.</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Loop over Columns</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">for</span> <span class="n">c</span> <span class="k">in</span> <span class="n">eachcol</span><span class="x">(</span><span class="n">df</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># do stuff.</span></code><br /><code class="language-julia highlighter-rouge">    <span class="c"># c is tuple with name, then vector</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+    <tr>
+      <td>Apply func to groups</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">by</span><span class="x">(</span><span class="n">df</span><span class="x">,</span> <span class="o">:</span><span class="n">group_col</span><span class="x">,</span> <span class="n">func</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Query</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Query</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">query</span> <span class="o">=</span> <span class="nd">@from</span> <span class="n">r</span> <span class="k">in</span> <span class="n">df</span> <span class="k">begin</span></code><br /><code class="language-julia highlighter-rouge">    <span class="nd">@where</span> <span class="n">r</span><span class="o">.</span><span class="n">col1</span> <span class="o">&gt;</span> <span class="mi">40</span></code><br /><code class="language-julia highlighter-rouge">    <span class="nd">@select</span> <span class="x">{</span><span class="n">new_name</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">col1</span><span class="x">,</span> <span class="n">r</span><span class="o">.</span><span class="n">col2</span><span class="x">}</span></code><br /><code class="language-julia highlighter-rouge">    <span class="nd">@collect</span> <span class="n">DataFrame</span> <span class="c"># Default: iterator</span></code><br /><code class="language-julia highlighter-rouge"><span class="k">end</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Introspection and reflection</h1>
+        </div>
+        
+        <table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Type</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">typeof</span><span class="x">(</span><span class="n">name</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Type check</td>
+      <td><code class="language-julia highlighter-rouge"><span class="k">isa</span><span class="x">(</span><span class="n">name</span><span class="x">,</span> <span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>List subtypes</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">subtypes</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>List supertype</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">supertype</span><span class="x">(</span><span class="n">TypeName</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Function methods</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">methods</span><span class="x">(</span><span class="n">func</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>JIT bytecode</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">code_llvm</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span></code></td>
+    </tr>
+    <tr>
+      <td>Assembly code</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">code_native</span><span class="x">(</span><span class="n">expr</span><span class="x">)</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Noteworthy packages and projects</h1>
+        </div>
+        
+        <p>Many core packages are managed by communities with names of the form
+Julia[Topic].</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Statistics</td>
+      <td>JuliaStats</td>
+    </tr>
+    <tr>
+      <td>Automatic differentiation</td>
+      <td>JuliaDiff</td>
+    </tr>
+    <tr>
+      <td>Numerical optimization</td>
+      <td>JuliaOpt</td>
+    </tr>
+    <tr>
+      <td>Plotting</td>
+      <td>JuliaPlots</td>
+    </tr>
+    <tr>
+      <td>Network (Graph) Analysis</td>
+      <td>JuliaGraphs</td>
+    </tr>
+    <tr>
+      <td>Web</td>
+      <td>JuliaWeb</td>
+    </tr>
+    <tr>
+      <td>Geo-Spatial</td>
+      <td>JuliaGeo</td>
+    </tr>
+    <tr>
+      <td>Machine Learning</td>
+      <td>JuliaML</td>
+    </tr>
+    <tr>
+      <td>Super-used Packages</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">DataFrames</span>    <span class="c"># linear/logistic regression</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">Distributions</span> <span class="c"># Statistical distributions</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">Flux</span>          <span class="c"># Machine learning</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">Gadfly</span>        <span class="c"># ggplot2-likeplotting</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">LightGraphs</span>   <span class="c"># Network analysis</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">TextAnalysis</span>  <span class="c"># NLP</span></code></td>
+    </tr>
+  </tbody>
+</table>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Naming Conventions</h1>
+        </div>
+        
+        <p>The main convention in Julia is to avoid underscores unless they are required for legibility.</p>
+
+<p>Variable names are in lower (or snake) case: <code class="language-julia highlighter-rouge"><span class="n">somevariable</span></code>.</p>
+
+<p>Constants are in upper case: <code class="language-julia highlighter-rouge"><span class="n">SOMECONSTANT</span></code>.</p>
+
+<p>Functions are in lower (or snake) case: <code class="language-julia highlighter-rouge"><span class="n">somefunction</span></code>.</p>
+
+<p>Macros are in lower (or snake) case: <code class="language-julia highlighter-rouge"><span class="nd">@somemacro</span></code>.</p>
+
+<p>Type names are in initial-capital camel case: <code class="language-julia highlighter-rouge"><span class="n">SomeType</span></code>.</p>
+
+<p>Julia files have the <code class="language-julia highlighter-rouge"><span class="n">jl</span></code> extension.</p>
+
+<p>For more information on Julia code style visit the manual: <a href="https://docs.julialang.org/en/v1/manual/style-guide/index.html">style
+guide</a> .</p>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Performance tips</h1>
+        </div>
+        
+        <ul>
+  <li>Avoid global variables.</li>
+  <li>Write
+<a href="https://www.johnmyleswhite.com/notebook/2013/12/06/writing-type-stable-code-in-julia">type-stable</a>
+code.</li>
+  <li>Use immutable types where possible.</li>
+  <li>Use <code class="language-julia highlighter-rouge"><span class="n">sizehint!</span></code> for large arrays.</li>
+  <li>Free up memory for large arrays with <code class="language-julia highlighter-rouge"><span class="n">arr</span> <span class="o">=</span> <span class="nb">nothing</span></code>.</li>
+  <li>Access arrays along columns, because multi-dimensional arrays are stored in column-major order.</li>
+  <li>Pre-allocate resultant data structures.</li>
+  <li>Disable the garbage collector in real-time applications: <code class="language-julia highlighter-rouge"><span class="n">disable_gc</span><span class="x">()</span></code>.</li>
+  <li>Avoid the splat (<code class="language-julia highlighter-rouge"><span class="o">...</span></code>) operator for keyword arguments.</li>
+  <li>Use mutating APIs (i.e. functions with <code class="language-julia highlighter-rouge"><span class="o">!</span></code> to avoid copying data structures.</li>
+  <li>Use array (element-wise) operations instead of list comprehensions.</li>
+  <li>Avoid <code class="language-julia highlighter-rouge"><span class="k">try</span></code>-<code class="language-julia highlighter-rouge"><span class="k">catch</span></code> in (computation-intensive) loops.</li>
+  <li>Avoid <code class="language-julia highlighter-rouge"><span class="kt">Any</span></code> in collections.</li>
+  <li>Avoid abstract types in collections.</li>
+  <li>Avoid string interpolation in I/O.</li>
+  <li><a href="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code" title="https://www.johnmyleswhite.com/notebook/2013/12/22/the-relationship-between-vectorized-and-devectorized-code">Vectorizing</a>
+does not improve speed (unlike R, MATLAB or Python).</li>
+  <li>Avoid <code class="language-julia highlighter-rouge"><span class="n">eval</span></code> at run-time.</li>
+</ul>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>IDEs, Editors and Plug-ins</h1>
+        </div>
+        
+        <ul>
+  <li><a href="https://junolab.org">Juno</a> (editor)</li>
+  <li><a href="https://www.juliabox.com">JuliaBox</a> (online IJulia notebook)</li>
+  <li><a href="https://try.jupyter.org">Jupyter</a> (online IJulia notebook)</li>
+  <li><a href="https://www.gnu.org/software/emacs">Emacs</a> <a href="https://www.emacswiki.org/emacs/Julia">Julia
+mode</a> (editor)</li>
+  <li><a href="https://www.vim.org">vim</a> <a href="https://github.com/JuliaLang/julia-vim">Julia
+mode</a> (editor)</li>
+  <li><a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">VS Code
+extension</a>
+(editor)</li>
+</ul>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Resources</h1>
+        </div>
+        
+        <ul>
+  <li><a href="https://docs.julialang.org/en/latest">Official documentation</a>.</li>
+  <li><a href="https://julialang.org/learning">Learning Julia</a> page.</li>
+  <li><a href="https://github.com/DataWookie/MonthOfJulia">Month of Julia</a></li>
+  <li><a href="https://julialang.org/community/standards">Community standards</a>.</li>
+  <li><a href="https://arxiv.org/pdf/1411.1607v4.pdf">Julia: A fresh approach to numerical
+computing</a> (pdf)</li>
+  <li><a href="https://arxiv.org/pdf/1209.5145v1.pdf">Julia: A Fast Dynamic Language for Technical
+Computing</a> (pdf)</li>
+</ul>
+
+      </div>
+      
+      <div class="box">
+        <div class="title">
+          <h1>Videos</h1>
+        </div>
+        
+        <ul>
+  <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6Qsq5_-zrg0NTwqDSDYtfQB">The 5th annual JuliaCon 2018</a></li>
+  <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6QpP6vqZs408etJVECPKIev">The 4th annual JuliaCon 2017 (Berkeley)</a></li>
+  <li><a href="https://www.youtube.com/playlist?list=PLP8iPy9hna6SQPwZUDtAM59-wPzCPyD_S">The 3rd annual JuliaCon 2016</a></li>
+  <li><a href="https://www.youtube.com/watch?v=pHQdSmySQ_w&amp;list=UU6LD83Gx-mFVq9y33w0YEug">Getting Started with Julia</a>
+by <a href="https://twitter.com/astrieanna">Leah Hanson</a></li>
+  <li><a href="https://youtu.be/8mZRIRHAZfo">Intro to Julia</a> by
+<a href="https://twitter.com/nassarhuda">Huda Nassar</a></li>
+  <li><a href="https://youtu.be/Cj6bjqS5otM">Introduction to Julia for Pythonistas</a> by <a href="https://twitter.com/jmxpearson">John Pearson</a></li>
+</ul>
+
+      </div>
+      
+    </li>
+  </ul>
+</div>
+
+
+
+   <footer>
+   </footer>
+
+ </body>
+</html>
