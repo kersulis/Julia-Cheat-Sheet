@@ -627,11 +627,11 @@ with overflow checking.</p>
       <td><code class="language-julia highlighter-rouge"><span class="n">size</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
     </tr>
     <tr>
-      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code> th row</td>
+      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code>-th row</td>
       <td><code class="language-julia highlighter-rouge"><span class="n">M</span><span class="x">[</span><span class="n">i</span><span class="x">,</span> <span class="o">:</span><span class="x">]</span></code></td>
     </tr>
     <tr>
-      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code> th column</td>
+      <td>Select <code class="language-julia highlighter-rouge"><span class="n">i</span></code>-th column</td>
       <td><code class="language-julia highlighter-rouge"><span class="n">M</span><span class="x">[</span><span class="o">:</span><span class="x">,</span> <span class="n">i</span><span class="x">]</span></code></td>
     </tr>
     <tr>
@@ -640,7 +640,7 @@ with overflow checking.</p>
     </tr>
     <tr>
       <td>Concatenate vertically</td>
-      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span> <span class="x">;</span> <span class="n">b</span><span class="x">]</span></code> or <code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="n">vcat</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span></code></td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="x">[</span><span class="n">a</span><span class="x">;</span> <span class="n">b</span><span class="x">]</span></code> or <code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">=</span> <span class="n">vcat</span><span class="x">(</span><span class="n">a</span><span class="x">,</span> <span class="n">b</span><span class="x">)</span></code></td>
     </tr>
     <tr>
       <td>Matrix transposition</td>
@@ -675,24 +675,27 @@ with overflow checking.</p>
       <td><code class="language-julia highlighter-rouge"><span class="n">inv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
     </tr>
     <tr>
-      <td>Solve <code class="language-julia highlighter-rouge"><span class="n">M</span><span class="o">*</span><span class="n">x</span> <span class="o">==</span> <span class="n">v</span></code></td>
+      <td>Solve <code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">*</span> <span class="n">x</span> <span class="o">==</span> <span class="n">v</span></code></td>
       <td><code class="language-julia highlighter-rouge"><span class="n">M</span> <span class="o">\</span> <span class="n">v</span></code> is <a class="tooltip" href="#">better <span> Numerically more stable and typically also faster. </span></a> than <code class="language-julia highlighter-rouge"><span class="n">inv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span> <span class="o">*</span> <span class="n">v</span></code></td>
     </tr>
     <tr>
       <td>Moore-Penrose pseudo-inverse</td>
       <td><code class="language-julia highlighter-rouge"><span class="n">pinv</span><span class="x">(</span><span class="n">M</span><span class="x">)</span></code></td>
     </tr>
+    <tr>
+      <td>Singular Value Decomposition (SVD)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">U</span><span class="x">,</span> <span class="n">S</span><span class="x">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">svd</span><span class="x">(</span><span class="n">A</span><span class="x">;</span> <span class="n">full</span><span class="o">=</span><span class="nb">false</span><span class="x">)</span> <span class="c"># use full=true to keep U and V square</span></code></td>
+    </tr>
+    <tr>
+      <td>Sparse SVD for computing <code class="language-julia highlighter-rouge"><span class="n">k</span></code> components (requires <code class="language-julia highlighter-rouge"><span class="k">using</span> <span class="n">Arpack</span></code>)</td>
+      <td><code class="language-julia highlighter-rouge"><span class="n">usv</span><span class="x">,</span> <span class="n">nconv</span><span class="x">,</span> <span class="n">niter</span><span class="x">,</span> <span class="n">nmult</span><span class="x">,</span> <span class="n">resid</span> <span class="o">=</span> <span class="n">svds</span><span class="x">(</span><span class="n">A</span><span class="o">::</span><span class="kt">SparseMatrixCSC</span><span class="x">;</span> <span class="n">nsv</span><span class="o">=</span><span class="n">k</span><span class="x">)</span></code><br /><code class="language-julia highlighter-rouge"><span class="n">U</span><span class="x">,</span> <span class="n">S</span><span class="x">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">usv</span><span class="o">.</span><span class="n">U</span><span class="x">,</span> <span class="n">usv</span><span class="o">.</span><span class="n">S</span><span class="x">,</span> <span class="n">usv</span><span class="o">.</span><span class="n">V</span></code></td>
+    </tr>
   </tbody>
 </table>
 
-<p>Julia has built-in support for <a href="https://docs.julialang.org/en/v1.0.0/stdlib/LinearAlgebra/">matrix
-decompositions</a>.</p>
+<p>Julia has built-in support for <a href="https://docs.julialang.org/en/v1.0.0/stdlib/LinearAlgebra/">matrix decompositions</a>.</p>
 
-<p>Julia tries to infer whether matrices are of a special type (symmetric,
-hermitian, etc.), but sometimes fails. To aid Julia in dispatching the
-optimal algorithms, special matrices can be declared to have a structure
-with functions like <code class="language-julia highlighter-rouge"><span class="kt">Symmetric</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">Hermitian</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">UpperTriangular</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">LowerTriangular</span></code>,
-<code class="language-julia highlighter-rouge"><span class="kt">Diagonal</span></code> , and more.</p>
+<p>Julia tries to infer whether matrices are of a special type (symmetric, hermitian, etc.), but sometimes fails. To aid Julia in dispatching the optimal algorithms, special matrices can be declared to have a structure with functions like <code class="language-julia highlighter-rouge"><span class="kt">Symmetric</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">Hermitian</span></code> , <code class="language-julia highlighter-rouge"><span class="kt">UpperTriangular</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">LowerTriangular</span></code>, <code class="language-julia highlighter-rouge"><span class="kt">Diagonal</span></code>, and more.</p>
 
       </div>
       
