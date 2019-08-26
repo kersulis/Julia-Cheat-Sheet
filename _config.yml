@@ -10,7 +10,6 @@ kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     default_lang: julia
-    css_class: 'syntax'
 
 t:
   en:
@@ -18,3 +17,5 @@ t:
     tagline: "Data science with"
     attribution-1: "Based on "
     attribution-2: "this intro to Julia"
+
+altbaseurl: "http://jonaskersulis.com/julia-cheat-sheet"

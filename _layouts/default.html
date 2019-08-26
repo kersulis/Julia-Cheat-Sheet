@@ -3,7 +3,6 @@
  <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8">
    <title>Julia for Data Science</title>
-   <link href="{{ site.baseurl }}/cheatsheet.css" rel="stylesheet" type="text/css">
  </head>
 
  <body>
@@ -12,7 +11,13 @@
 
    {{ content }}
 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <footer>
+     <script>
+     $( "code" ).addClass( "language-language-julia highlight highlighter-rouge language-julia" );
+     </script>
+     <link href="{{ site.baseurl }}/rouge.css" rel="stylesheet">
+     <link href="{{ site.baseurl }}/cheatsheet.css" rel="stylesheet" type="text/css">
    </footer>
 
  </body>

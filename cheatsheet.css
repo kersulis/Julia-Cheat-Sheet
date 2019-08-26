@@ -19,14 +19,12 @@ h5,
 h6,
 p,
 blockquote,
-pre,
 a,
 abbr,
 acronym,
 address,
 big,
 cite,
-code,
 del,
 dfn,
 em,
@@ -130,7 +128,6 @@ table {
 body {
   font-family: 'Ubuntu', sans-serif;
   text-align: center;
-  color: #2a2a2a;
   margin: 1em;
 }
 h1 {
@@ -254,18 +251,8 @@ le .box table {
   margin-right: auto;
   width: 32em;
 }
-pre {
-  font-family: 'Ubuntu Mono', monospace;
-  color: #80ab5d;
-}
-code {
-  display: inline-block;
-  white-space: pre-wrap;
-  font-family: 'Ubuntu Mono', monospace;
-  color: darkgreen;
-}
-pre code {
-  margin-left: 20px;
+.highlight pre {
+  padding-left: 20px;
 }
 a {
   color: #7182dc;
