@@ -1,5 +1,5 @@
 title: Julia Cheat Sheet for Data Science
-baseurl: ""
+baseurl: "http://jonaskersulis.com/julia-cheat-sheet"
 description: "Julia Cheat Sheet for Data Science"
 github_username: kersulis
 markdown: kramdown
@@ -17,5 +17,3 @@ t:
     tagline: "Data science with"
     attribution-1: "Based on "
     attribution-2: "this intro to Julia"
-
-altbaseurl: "http://jonaskersulis.com/julia-cheat-sheet"
