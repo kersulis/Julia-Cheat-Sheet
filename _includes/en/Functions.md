@@ -67,20 +67,19 @@ end
 ```
 
 Functions can be
-[vectorized](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized-1)
-by using the Dot Syntax
+[vectorized](https://docs.julialang.org/en/v1/manual/functions/#man-vectorized-1) or "broadcast" by using the Dot Syntax
 
 ```julia
 # here we broadcast the subtraction of each mean value
 # by using the dot operator
 julia> using Statistics
 julia> A = rand(3, 4);
-julia> B = A .- mean(A, dims=1)
+julia> B = A .- mean(A; dims=1)
 3×4 Array{Float64,2}:
   0.0387438     0.112224  -0.0541478   0.455245
   0.000773337   0.250006   0.0140011  -0.289532
  -0.0395171    -0.36223    0.0401467  -0.165713
-julia> mean(B, dims=1)
+julia> mean(B; dims=1)
 1×4 Array{Float64,2}:
  -7.40149e-17  7.40149e-17  1.85037e-17  3.70074e-17
 ```

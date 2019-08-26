@@ -20,6 +20,8 @@
   title: Arrays
 - file: Linear-Algebra.md
   title: Linear Algebra
+- file: Sparse.md
+  title: Sparse arrays
 - file: Control-flow-and-loops.md
   title: Control flow and loops
 - file: Functions.md
@@ -48,6 +50,10 @@
   title: I/O
 - file: DataFrames.md
   title: DataFrames
+- file: Images.md
+  title: Images
+- file: Plots.md
+  title: Plotting
 - file: Introspection-and-reflection.md
   title: Introspection and reflection
 - file: Noteworthy-packages-and-projects.md

@@ -2,7 +2,7 @@
 | ---------------------------------------------- | ------------------------------------------- |
 | Character                                      | `chr = 'C'`                                 |
 | String                                         | `str = "A string"`                          |
-| Loop through characters                        | `for c in str`<br>`    println(c)`<br>`end` |
+| Loop through characters                        | `for c in str`<br>&emsp;`println(c)`<br>`end` |
 | Concatenation                                  | `str = "Learn" * " " * "Julia"`             |
 | String interpolation                           | `a = b = 2`<br>`println("a * b = $(a*b)")`  |
 | First matching character or regular expression | `findfirst(isequal('i'), "Julia") == 4`     |
