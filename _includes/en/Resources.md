@@ -6,3 +6,4 @@
   computing](https://arxiv.org/pdf/1411.1607v4.pdf) (pdf)
 - [Julia: A Fast Dynamic Language for Technical
   Computing](https://arxiv.org/pdf/1209.5145v1.pdf) (pdf)
+- [JuliaCon: official conference](https://juliacon.org/)

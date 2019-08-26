@@ -1,0 +1,34 @@
+- file: Workflow.md
+  title: Workflow
+- file: Basics.md
+  title: Basics
+- file: The-shell-aka-REPL.md
+  title: The shell a.k.a. REPL
+- file: Control-flow-and-loops.md
+  title: Control flow and loops
+- file: Collection-functions.md
+  title: Collection functions
+- file: Types.md
+  title: Types
+- file: Missing-and-Nothing.md
+  title: Missing and Nothing
+- file: Exceptions.md
+  title: Exceptions
+- file: Modules.md
+  title: Modules
+- file: Expressions.md
+  title: Expressions
+- file: Macros.md
+  title: Macros
+- file: Parallel-Computing.md
+  title: Parallel Computing
+- file: DataFrames.md
+  title: DataFrames
+- file: Introspection-and-reflection.md
+  title: Introspection and reflection
+- file: Performance-tips.md
+  title: Performance tips
+- file: IDEs-Editors-and-Plugins.md
+  title: IDEs, Editors and Plug-ins
+- file: Videos.md
+  title: Videos

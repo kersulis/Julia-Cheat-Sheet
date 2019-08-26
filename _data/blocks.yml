@@ -1,70 +1,36 @@
-- file: Workflow.md
-  title: Workflow
-- file: Basics.md
-  title: Basics
-- file: Operators.md
-  title: Operators
-- file: The-shell-aka-REPL.md
-  title: The shell a.k.a. REPL
+- file: Noteworthy-packages-and-projects.md
+  title: Noteworthy packages and projects
 - file: Standard-libraries.md
   title: Standard libraries
+- file: IO.md
+  title: I/O
 - file: Package-management.md
   title: Package management
-- file: Characters-and-strings.md
-  title: Characters and strings
 - file: Numbers.md
-  title: Numbers
-- file: Random-Numbers.md
-  title: Random Numbers
+  title: Numbers, types, and type conversion
+- file: Operators.md
+  title: Operators
+- file: Images.md
+  title: Images
 - file: Arrays.md
   title: Arrays
 - file: Linear-Algebra.md
   title: Linear Algebra
+- file: Sets.md
+  title: Comparing lists
 - file: Sparse.md
   title: Sparse arrays
-- file: Control-flow-and-loops.md
-  title: Control flow and loops
-- file: Functions.md
-  title: Functions
-- file: Dictionaries.md
-  title: Dictionaries
-- file: Sets.md
-  title: Sets
-- file: Collection-functions.md
-  title: Collection functions
-- file: Types.md
-  title: Types
-- file: Missing-and-Nothing.md
-  title: Missing and Nothing
-- file: Exceptions.md
-  title: Exceptions
-- file: Modules.md
-  title: Modules
-- file: Expressions.md
-  title: Expressions
-- file: Macros.md
-  title: Macros
-- file: Parallel-Computing.md
-  title: Parallel Computing
-- file: IO.md
-  title: I/O
-- file: DataFrames.md
-  title: DataFrames
-- file: Images.md
-  title: Images
-- file: Plots.md
-  title: Plotting
-- file: Introspection-and-reflection.md
-  title: Introspection and reflection
-- file: Noteworthy-packages-and-projects.md
-  title: Noteworthy packages and projects
 - file: Naming-Conventions.md
   title: Naming Conventions
-- file: Performance-tips.md
-  title: Performance tips
-- file: IDEs-Editors-and-Plugins.md
-  title: IDEs, Editors and Plug-ins
+- file: Functions.md
+  title: Functions
+- file: Plots.md
+  title: Plotting
+- file: Characters-and-strings.md
+  title: Characters and strings
+- file: Dictionaries.md
+  title: Dictionaries
+- file: Random-Numbers.md
+  title: Random Numbers
 - file: Resources.md
   title: Resources
-- file: Videos.md
-  title: Videos
